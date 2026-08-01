@@ -33,234 +33,45 @@ st.markdown(
     """
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
-    html, body, [class*="css"], * { 
-        font-family: 'Google Sans', 'Inter', sans-serif; 
-    }
-    
+    html, body, [class*="css"], * { font-family: 'Google Sans', 'Inter', sans-serif; }
     .stApp > header { background-color: transparent !important; }
-
-    .gemini-greeting {
-        font-family: 'Google Sans', sans-serif;
-        font-size: 3.2rem;
-        font-weight: 500;
-        color: var(--text-color);
-        text-align: center;
-        margin-top: 25vh;
-        margin-bottom: 2rem;
-        letter-spacing: -0.02em;
-    }
-
+    .gemini-greeting { font-family: 'Google Sans', sans-serif; font-size: 3.2rem; font-weight: 500; color: var(--text-color); text-align: center; margin-top: 25vh; margin-bottom: 2rem; letter-spacing: -0.02em; }
     .page-eyebrow, .page-header-rule, .active-prompt-box { display: none !important; }
-
-    section[data-testid="stSidebar"] div.block-container {
-        padding-top: 0.5rem !important;
-        display: flex;
-        flex-direction: column;
-        min-height: 95vh;
-    }
-    section[data-testid="stSidebar"] h1 { 
-        font-family: 'Google Sans', sans-serif !important;
-        font-size: 1.7rem !important; 
-        font-weight: 800 !important; 
-        margin-top: -1.5rem !important; 
-        margin-bottom: 0.2rem !important;
-        letter-spacing: -0.03em;
-    }
-    
-    section[data-testid="stSidebar"] h2 {
-        font-family: 'Google Sans', sans-serif !important;
-        font-size: 0.9rem !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.08em !important;
-        margin-top: 1.2rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-    section[data-testid="stSidebar"] hr { 
-        border-color: rgba(128, 128, 128, 0.2) !important; 
-        margin: 0.8rem 0 !important; 
-    }
-
-    .gauge-wrap {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        background-color: var(--background-color);
-        border: 1px solid rgba(128, 128, 128, 0.2);
-        border-radius: 16px;
-        padding: 14px;
-        margin-bottom: 10px;
-    }
-    .gauge-ring {
-        width: 64px; height: 64px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        flex-shrink: 0;
-    }
-    .gauge-inner {
-        width: 50px; height: 50px;
-        border-radius: 50%;
-        background-color: var(--background-color);
-        display: flex; align-items: center; justify-content: center;
-        font-family: 'Google Sans', sans-serif;
-        font-weight: 800;
-        font-size: 1.2rem;
-        color: var(--text-color);
-    }
-    .gauge-label {
-        font-family: 'Google Sans', sans-serif;
-        font-size: 0.8rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        margin-bottom: 2px;
-    }
+    section[data-testid="stSidebar"] div.block-container { padding-top: 0.5rem !important; display: flex; flex-direction: column; min-height: 95vh; }
+    section[data-testid="stSidebar"] h1 { font-family: 'Google Sans', sans-serif !important; font-size: 1.7rem !important; font-weight: 800 !important; margin-top: -1.5rem !important; margin-bottom: 0.2rem !important; letter-spacing: -0.03em; }
+    section[data-testid="stSidebar"] h2 { font-family: 'Google Sans', sans-serif !important; font-size: 0.9rem !important; font-weight: 700 !important; text-transform: uppercase !important; letter-spacing: 0.08em !important; margin-top: 1.2rem !important; margin-bottom: 0.5rem !important; }
+    section[data-testid="stSidebar"] hr { border-color: rgba(128, 128, 128, 0.2) !important; margin: 0.8rem 0 !important; }
+    .gauge-wrap { display: flex; align-items: center; gap: 16px; background-color: var(--background-color); border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 16px; padding: 14px; margin-bottom: 10px; }
+    .gauge-ring { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .gauge-inner { width: 50px; height: 50px; border-radius: 50%; background-color: var(--background-color); display: flex; align-items: center; justify-content: center; font-family: 'Google Sans', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--text-color); }
+    .gauge-label { font-family: 'Google Sans', sans-serif; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
     .gauge-sub { font-size: 0.75rem; font-weight: 600; opacity: 0.7; line-height: 1.2; }
-
     .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 5px; }
-    .metric-tile {
-        background-color: var(--background-color);
-        border-radius: 12px;
-        padding: 12px;
-        border: 1px solid rgba(128, 128, 128, 0.2);
-    }
-    .metric-eyebrow {
-        font-size: 0.75rem;
-        font-weight: 800;
-        opacity: 0.7;
-        margin-bottom: 3px;
-        text-transform: uppercase;
-    }
-    .metric-value {
-        font-size: 1.25rem;
-        font-weight: 800;
-    }
-
-    section[data-testid="stSidebar"] button {
-        background-color: transparent !important;
-        border: 1px solid rgba(128, 128, 128, 0.2) !important;
-        border-radius: 20px !important;
-        font-family: 'Google Sans', sans-serif !important;
-        font-size: 0.95rem !important;
-        font-weight: 700 !important;
-        justify-content: flex-start !important;
-        padding: 10px 16px !important;
-        transition: background 0.15s ease;
-    }
-    section[data-testid="stSidebar"] button:hover {
-        background-color: var(--secondary-background-color) !important;
-    }
-
-    div[data-testid="stChatMessage"] {
-        border: none !important;
-        background: transparent !important;
-        padding: 12px 0 !important;
-        margin-bottom: 15px !important;
-        font-size: 1.05rem !important;
-        font-weight: 500;
-    }
-    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-assistant"]) {
-        background: transparent !important;
-    }
-    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) {
-        background-color: var(--secondary-background-color) !important;
-        border-radius: 24px !important;
-        padding: 14px 24px !important;
-        margin-left: auto !important;
-        width: fit-content !important;
-        max-width: 85% !important;
-        font-weight: 600;
-    }
-    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) div[data-testid="chatAvatarIcon-user"] {
-        display: none !important;
-    }
-
-    div.st-key-chat_bar {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 999;
-        background-color: var(--secondary-background-color);
-        border: 1px solid rgba(128, 128, 128, 0.2);
-        border-radius: 40px;
-        padding: 8px 12px 8px 16px;
-        width: 90%;
-        max-width: 820px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    @media (max-width: 900px) {
-        div.st-key-chat_bar {
-            left: calc(50% + 120px); 
-        }
-    }
+    .metric-tile { background-color: var(--background-color); border-radius: 12px; padding: 12px; border: 1px solid rgba(128, 128, 128, 0.2); }
+    .metric-eyebrow { font-size: 0.75rem; font-weight: 800; opacity: 0.7; margin-bottom: 3px; text-transform: uppercase; }
+    .metric-value { font-size: 1.25rem; font-weight: 800; }
+    section[data-testid="stSidebar"] button { background-color: transparent !important; border: 1px solid rgba(128, 128, 128, 0.2) !important; border-radius: 20px !important; font-family: 'Google Sans', sans-serif !important; font-size: 0.95rem !important; font-weight: 700 !important; justify-content: flex-start !important; padding: 10px 16px !important; transition: background 0.15s ease; }
+    section[data-testid="stSidebar"] button:hover { background-color: var(--secondary-background-color) !important; }
+    div[data-testid="stChatMessage"] { border: none !important; background: transparent !important; padding: 12px 0 !important; margin-bottom: 15px !important; font-size: 1.05rem !important; font-weight: 500; }
+    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-assistant"]) { background: transparent !important; }
+    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) { background-color: var(--secondary-background-color) !important; border-radius: 24px !important; padding: 14px 24px !important; margin-left: auto !important; width: fit-content !important; max-width: 85% !important; font-weight: 600; }
+    div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) div[data-testid="chatAvatarIcon-user"] { display: none !important; }
+    div.st-key-chat_bar { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 999; background-color: var(--secondary-background-color); border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 40px; padding: 8px 12px 8px 16px; width: 90%; max-width: 820px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    @media (max-width: 900px) { div.st-key-chat_bar { left: calc(50% + 120px); } }
     div.st-key-chat_bar div[data-testid="stHorizontalBlock"] { align-items: center; gap: 0; }
-    div.st-key-chat_bar div[data-testid="stPopover"] button {
-        border: none !important;
-        background: transparent !important;
-        font-size: 1.5rem !important;
-        padding: 8px !important;
-        box-shadow: none !important;
-    }
-    div.st-key-chat_bar div[data-testid="stPopover"] button:hover {
-        background: var(--background-color) !important;
-        border-radius: 50% !important;
-    }
+    div.st-key-chat_bar div[data-testid="stPopover"] button { border: none !important; background: transparent !important; font-size: 1.5rem !important; padding: 8px !important; box-shadow: none !important; }
+    div.st-key-chat_bar div[data-testid="stPopover"] button:hover { background: var(--background-color) !important; border-radius: 50% !important; }
     div.st-key-chat_bar div[data-testid="stForm"] { border: none !important; background: transparent !important; }
-    div.st-key-chat_bar input[type="text"] {
-        border: none !important;
-        box-shadow: none !important;
-        background: transparent !important;
-        font-family: 'Google Sans', sans-serif !important;
-        font-size: 1.1rem !important;
-        font-weight: 600 !important;
-        padding-left: 12px !important;
-        color: var(--text-color) !important;
-    }
-    
-    div.st-key-chat_bar button[kind="formSubmit"] {
-        background: transparent !important;
-        border: none !important;
-        border-radius: 50% !important;
-        width: 42px !important;
-        height: 42px !important;
-        font-size: 1.3rem !important;
-        box-shadow: none !important;
-    }
-    div.st-key-chat_bar button[kind="formSubmit"]:hover {
-        background: var(--background-color) !important;
-    }
+    div.st-key-chat_bar input[type="text"] { border: none !important; box-shadow: none !important; background: transparent !important; font-family: 'Google Sans', sans-serif !important; font-size: 1.1rem !important; font-weight: 600 !important; padding-left: 12px !important; color: var(--text-color) !important; }
+    div.st-key-chat_bar button[kind="formSubmit"] { background: transparent !important; border: none !important; border-radius: 50% !important; width: 42px !important; height: 42px !important; font-size: 1.3rem !important; box-shadow: none !important; }
+    div.st-key-chat_bar button[kind="formSubmit"]:hover { background: var(--background-color) !important; }
     div.st-key-chat_bar div[data-testid="stPopover"] button svg { display: none !important; }
     div.st-key-chat_bar div[data-testid="stPopover"] button { min-width: 0 !important; }
     div.st-key-chat_bar div[data-testid="stTextInput"] > div { border: none !important; box-shadow: none !important; }
     div[data-testid="InputInstructions"] { display: none !important; }
-    
-    .attach-chip {
-        display: inline-block;
-        background-color: var(--secondary-background-color);
-        border: 1px solid rgba(128, 128, 128, 0.2);
-        border-radius: 16px;
-        padding: 8px 16px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        margin-left: 6px;
-        margin-bottom: 20px;
-    }
-
-    div.st-key-tool_panel {
-        background-color: var(--background-color);
-        border: 1px solid rgba(128, 128, 128, 0.2);
-        border-radius: 16px;
-        padding: 20px 22px 10px 22px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .panel-title {
-        font-family: 'Google Sans', sans-serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 12px;
-    }
+    .attach-chip { display: inline-block; background-color: var(--secondary-background-color); border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 16px; padding: 8px 16px; font-size: 0.95rem; font-weight: 600; margin-left: 6px; margin-bottom: 20px; }
+    div.st-key-tool_panel { background-color: var(--background-color); border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 16px; padding: 20px 22px 10px 22px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .panel-title { font-family: 'Google Sans', sans-serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -400,10 +211,8 @@ if "prompt_score" not in st.session_state:
 if "pending_file" not in st.session_state:
   st.session_state.pending_file = None
 
-
 def get_similarity(a, b):
   return SequenceMatcher(None, a, b).ratio()
-
 
 # ==========================================
 # AI TOOLS FUNCTIONS
@@ -422,7 +231,7 @@ def run_compressor(prompt_text):
   if not client: return "❌ System Error: API Client did not initialize. Check your API Key."
   try:
     res = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model="gemini-1.5-flash",
         contents=(
             "Rewrite this to be as short and token-efficient as possible."
             f" Output ONLY the compressed prompt: '{prompt_text}'"
@@ -440,11 +249,10 @@ def run_tutor(prompt_text):
         f"Analyze this prompt: '{prompt_text}'. List 1. Missing elements 2."
         " Structural advice."
     )
-    res = client.models.generate_content(model="gemini-2.0-flash", contents=meta)
+    res = client.models.generate_content(model="gemini-1.5-flash", contents=meta)
     return res.text
   except Exception as e:
     return f"❌ **API Error:** {str(e)}"
-
 
 # ==========================================
 # MAIN CHAT INTERFACE
@@ -569,7 +377,7 @@ if prompt:
         st.write("📊 **Step 2:** Evaluating token efficiency & generating clarity score...")
         safe_prompt = prompt.replace("\n", " ").replace("'", "").replace('"', "")
         score_res = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-1.5-flash",
             contents=(
                 "Score this prompt/code snippet from 1 to 100 based on token"
                 " efficiency, directness, and structure. Extremely long,"
@@ -619,7 +427,7 @@ if prompt:
         })
       else:
         st.write("🌐 **Step 4:** Cache Miss. Routing to Gemini API...")
-        model_id = "gemini-2.0-flash"
+        model_id = "gemini-1.5-flash"
         cost_per_token = (0.075 / 1000000) * 83
         savings = 0.50
 
