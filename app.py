@@ -231,7 +231,7 @@ def run_compressor(prompt_text):
   if not client: return "❌ System Error: API Client did not initialize. Check your API Key."
   try:
     res = client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-1.5-flash-8b",
         contents=(
             "Rewrite this to be as short and token-efficient as possible."
             f" Output ONLY the compressed prompt: '{prompt_text}'"
@@ -249,7 +249,7 @@ def run_tutor(prompt_text):
         f"Analyze this prompt: '{prompt_text}'. List 1. Missing elements 2."
         " Structural advice."
     )
-    res = client.models.generate_content(model="gemini-1.5-flash", contents=meta)
+    res = client.models.generate_content(model="gemini-1.5-flash-8b", contents=meta)
     return res.text
   except Exception as e:
     return f"❌ **API Error:** {str(e)}"
@@ -377,7 +377,7 @@ if prompt:
         st.write("📊 **Step 2:** Evaluating token efficiency & generating clarity score...")
         safe_prompt = prompt.replace("\n", " ").replace("'", "").replace('"', "")
         score_res = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-1.5-flash-8b",
             contents=(
                 "Score this prompt/code snippet from 1 to 100 based on token"
                 " efficiency, directness, and structure. Extremely long,"
@@ -427,7 +427,7 @@ if prompt:
         })
       else:
         st.write("🌐 **Step 4:** Cache Miss. Routing to Gemini API...")
-        model_id = "gemini-1.5-flash"
+        model_id = "gemini-1.5-flash-8b"
         cost_per_token = (0.075 / 1000000) * 83
         savings = 0.50
 
