@@ -7,6 +7,7 @@ import pandas as pd
 from PIL import Image
 import re
 import streamlit as st
+import streamlit.components.v1 as components
 
 # ==========================================
 # UI CONFIGURATION & DESIGN SYSTEM
