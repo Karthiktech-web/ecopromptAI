@@ -1,4 +1,5 @@
 import difflib
+import random
 import time
 from difflib import SequenceMatcher
 from google import genai
@@ -461,16 +462,16 @@ if not st.session_state.messages:
 
 if st.session_state.active_panel in ("compressor", "tutor"):
   panel_meta = {
-        "compressor": (
-            "✂️",
-            "Prompt Compressor",
-            "Token-efficient rewrite of your active prompt",
-        ),
-        "tutor": (
-            "🎓",
-            "Prompt Tutor",
-            "Structure and clarity feedback on your active prompt",
-        ),
+      "compressor": (
+          "✂️",
+          "Prompt Compressor",
+          "Token-efficient rewrite of your active prompt",
+      ),
+      "tutor": (
+          "🎓",
+          "Prompt Tutor",
+          "Structure and clarity feedback on your active prompt",
+      ),
   }
   icon, panel_title, panel_sub = panel_meta[st.session_state.active_panel]
 
